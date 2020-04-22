@@ -31,7 +31,7 @@ access to tabs, notifications, cookies
 
 ### Background File Explained
 - As per the docs
-  ~Effective background scripts stay dormant until an event they are listening for fires, react with specified instructions, then unload.~
+- Effective background scripts stay dormant until an event they are listening for fires, react with specified instructions, then unload.
 - You can have several of these depending on how you modularize your code.
 
 ### Content File Explained
