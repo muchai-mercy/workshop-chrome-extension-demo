@@ -5,7 +5,7 @@
   "version": "0.0.1",
   "browser_action": {
     "default_title": "Demo Extension",
-    "default_popup": "background.html",
+    // "default_popup": "popup.html",
     "default_icon": "images/house-128.png"
   },
   "icons": {
@@ -24,7 +24,7 @@
     }
   ],
   "background": {
-    "page": "background.js",
+    "page": "background.html",
     "script": ["background.js"],
     "persistent": false
   }
