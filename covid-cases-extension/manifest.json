@@ -1,15 +1,15 @@
 {
   "manifest_version": 2,
   "name": "Demo Extension",
-  "description": "Welcome to this Demo extension!",
+  "description": "This Extension displays the covid-19 cases and encourages you to stay home 🏠",
   "version": "0.0.1",
   "browser_action": {
     "default_title": "Demo Extension",
-    "default_icon": "images/icon-128.png"
+    "default_icon": "images/house-128.png"
   },
   "icons": {
-    "48": "images/icon-48.png",
-   "128": "images/icon-128.png"
+    "48": "images/house-48.png",
+   "128": "images/house-128.png"
   },
   "permissions": [
     "tabs",
