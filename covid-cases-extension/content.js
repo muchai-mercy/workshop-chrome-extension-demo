@@ -3,13 +3,12 @@ chrome.runtime.onMessage.addListener((request) => {
     chrome.runtime.sendMessage('', {
       type: 'Stay home',
       options: {
-        title: 'STAY AT HOME 😷',
-        message: 'Stay safe and stay at home!',
+        title: 'STAY AT HOME',
+        message: 'Stay safe, we will notify you shortly on total covid cases!',
         type: 'basic',
         iconUrl: 'images/house-128.png'
       }
     });
-    console.log('ARE WE EVEN HERE??')
     getCases()
   }
 });
@@ -22,22 +21,33 @@ async function getCases() {
       'Content-Type': 'application/json'
     }
   })
-
   if (res.status == 200) {
     let json = await res.json();
-    console.log('>>>>>>>', json);
+    setTimeout((
+      await chrome.runtime.sendMessage('', {
+        type: 'active cases',
+        options: {
+          title: 'TOTAL CASES 😷',
+          message: `
+          The total cases discovered today: ${formatNumber(json.todayCases)}\nThe total cases recorded: ${formatNumber(json.cases)}
+          `,
+          type: 'basic',
+          iconUrl: 'images/house-128.png'
+        }
+      }), 1000));
+    return json;
+  } else {
     await chrome.runtime.sendMessage('', {
-      type: 'active cases',
+      type: 'error',
       options: {
-        title: 'TOTAL CASES 😷',
-        message: `The total cases: ${formatNumber(json.cases)} people`,
+        title: 'ERROR FETCHING DATA 😷',
+        message: res.status,
         type: 'basic',
         iconUrl: 'images/house-128.png'
       }
     });
-    return json;
+    throw new Error(res.status);
   }
-  throw new Error(res.status);
 }
 
 function formatNumber(x) {

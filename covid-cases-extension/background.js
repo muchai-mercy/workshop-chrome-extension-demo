@@ -18,3 +18,9 @@ chrome.runtime.onMessage.addListener(data => {
     chrome.notifications.create('', data.options);
   }
 });
+
+chrome.runtime.onMessage.addListener(data => {
+  if (data.type === 'error') {
+    chrome.notifications.create('', data.options);
+  }
+});
